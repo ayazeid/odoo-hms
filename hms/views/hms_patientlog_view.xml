@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+     <record id="hms_patientlog_tree" model="ir.ui.view">
+          <field name="name">Patient History Log</field>
+          <field name="model">hms.patientlog</field>
+         <field name="arch" type="xml">
+             <tree>
+                 <field name="patient_id"/>
+             <field name="description"/>
+             <field name="createdby"/>
+             <field name="createdDate"/>
+             </tree>
+         </field>
+      </record>
+    </data>
+</odoo>

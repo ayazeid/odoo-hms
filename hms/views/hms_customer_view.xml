@@ -1,0 +1,37 @@
+<odoo>
+    <data>
+<!--        tree view-->
+        <record id="hms_customer_tree" model="ir.ui.view">
+          <field name="name">Customers</field>
+          <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+          <field name="arch" type="xml">
+              <field name="email" position="after">
+                  <field name="website"/>
+              </field>
+          </field>
+      </record>
+
+<!--form view-->
+         <record id="hms_customer_form" model="ir.ui.view">
+          <field name="name">Customer</field>
+          <field name="model">res.partner</field>
+             <field name="inherit_id" ref="base.view_partner_form"/>
+          <field name="arch" type="xml">
+                <field name="vat" position="attributes">
+                  <attribute name="required">True</attribute>
+              </field>
+              <xpath expr="//notebook/page[2]//group[@name='misc']" position="inside">
+                      <field name="related_patient_id"/>
+              </xpath>
+          </field>
+      </record>
+
+<!--    menu-->
+        <record id="hms_customer_model_action" model="ir.actions.act_window">
+    <field name="name">Customer</field>
+    <field name="res_model">res.partner</field>
+</record>
+<menuitem id="hms_customer_menu_action" parent="hms_menu" action="hms_customer_model_action"/>
+    </data>
+</odoo>

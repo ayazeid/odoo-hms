@@ -1,0 +1,83 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--      tree view-->
+      <record id="hms_patient_tree" model="ir.ui.view">
+          <field name="name">Patients</field>
+          <field name="model">hms.patient</field>
+          <field name="arch" type="xml">
+              <tree>
+                  <field name="firstname" string="First Name"/>
+                  <field name="lastname" string="Last Name"/>
+                  <field name="birthdate" string="Birth Date"/>
+                  <field name="age" string="Age"/>
+                  <field name="address" string="Address"/>
+                  <field name="history" string="History"/>
+                  <field name="cr" string="CR Ratio"/>
+                  <field name="bloodtype" string="Blood Type"/>
+                  <field name="pcr" string="PCR"/>
+                  <field name="image" string="Profile Picture"/>
+              </tree>
+          </field>
+      </record>
+
+
+<!--form view-->
+    <record id="hms_patient_form_view" model="ir.ui.view" >
+      <field name="name">Patients</field>
+      <field name="model">hms.patient</field>
+      <field name="arch" type="xml">
+        <form>  
+        <sheet>
+            <group>
+                     <group>
+                         <field name="image" string="Profile Picture" widget="image"/>
+                         <field name="firstname" string="First Name" required="True"/>
+                         <field name="lastname" string="Last Name" required="True"/>
+                         <field name="birthdate" string="Birth Date"/>
+                         <field name="address" string="Address"/>
+                         <field name="email" />
+                         <field name="customer_id"/>
+                </group>
+                <group>
+
+                    <field name="age" string="Age"/>
+                    <field name="bloodtype" string="Blood Type"/>
+                    <field name="cr" string="CR Ratio" required="True"/>
+                   <field name="pcr" string="PCR"/>
+                    <field name="state" string="State" />
+<!--                     <field name="history" string="History" attrs="{'invisible':[('age','&lt;',30)]}" />-->
+                </group>
+                <group>
+                    <field name="department_id" string="Department" domain="[('is_opened','=',True)]"/>
+                    <field name="doctor" string="Doctors" widget="many2many_tags" attrs="{'readonly':[('department_id','=',False)]}"/>
+                    <field name="capacity" string="Department Capacity" readonly="True"/>
+                </group>
+
+            </group>
+<notebook>
+    <page string="History"  attrs="{'invisible':[('age','&lt;',50)]}">
+         <field name="history" string="History"/>
+    </page>
+    <page string="History Log">
+        <field name="log" string="Patient History log"/>
+    </page>
+</notebook>
+
+        </sheet>
+        </form>
+      </field>
+
+    </record>
+
+<!--      menu-->
+ <record id="hms_patient_model_action" model="ir.actions.act_window">
+    <field name="name">Patients</field>
+    <field name="res_model">hms.patient</field>
+    <field name="view_mode">tree,form</field>
+</record>
+      <menuitem id="hms_menu" name="Hospital Management System"/>
+
+<menuitem id="hms_patient_menu_action" parent="hms_menu" action="hms_patient_model_action"/>
+    </data>
+    </odoo>
