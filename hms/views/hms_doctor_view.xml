@@ -39,6 +39,6 @@
     <field name="name">Doctors</field>
     <field name="res_model">hms.doctor</field>
 </record>
-<menuitem id="hms_doctor_menu_action" parent="hms_menu" action="hms_doctor_model_action"/>
+<menuitem id="hms_doctor_menu_action" parent="hms_menu" action="hms_doctor_model_action" groups="hms.hms_manager_group"/>
     </data>
 </odoo>

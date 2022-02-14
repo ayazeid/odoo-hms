@@ -50,7 +50,7 @@
                 </group>
                 <group>
                     <field name="department_id" string="Department" domain="[('is_opened','=',True)]"/>
-                    <field name="doctor" string="Doctors" widget="many2many_tags" attrs="{'readonly':[('department_id','=',False)]}"/>
+                    <field name="doctor" string="Doctors" widget="many2many_tags" attrs="{'readonly':[('department_id','=',False)]}" groups="hms.hms_manager_group"/>
                     <field name="capacity" string="Department Capacity" readonly="True"/>
                 </group>
 
